@@ -1,0 +1,229 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    display: flex;
+    color: #333; /* Default text color for the whole page */
+    background-color: #f9f9f9;
+}
+
+/* Timeline Container (styles remain the same) */
+.timeline-container {
+    width: 230px;
+    background-color: #eef1f5;
+    padding: 25px 20px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    border-right: 1px solid #d8dde3;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.timeline-navigation { /* ... (styles remain the same as previous correct version) ... */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.timeline-navigation::before { /* ... (styles remain the same) ... */
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    bottom: 15px;
+    width: 3px;
+    background-color: #c0c9d4;
+    z-index: 1;
+    border-radius: 2px;
+}
+
+.timeline-navigation li { /* ... (styles remain the same) ... */
+    padding: 12px 5px 12px 40px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 2;
+    background-color: transparent;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: #50667b;
+    transition: color 0.3s ease;
+}
+
+.timeline-navigation li::before { /* ... (styles remain the same) ... */
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #d1d8e0;
+    border: 3px solid #eef1f5;
+    border-radius: 50%;
+    z-index: 3;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-navigation li:hover { color: #007bff; }
+.timeline-navigation li:hover::before { background-color: #007bff; }
+.timeline-navigation li.active { color: #d9534f; font-weight: bold; }
+.timeline-navigation li.active::before {
+    background-color: #d9534f;
+    border-color: #fff;
+    transform: translateY(-50%) scale(1.2);
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 0;
+    overflow-y: auto;
+    height: 100vh;
+    background-color: #ffffff; /* White background for content area */
+}
+
+.scenario-section {
+    padding: 50px 60px;
+    margin-bottom: 0;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+    position: relative;
+    /* Default text colors for sections WITHOUT background images */
+    color: #444; /* Default paragraph/list text color for sections */
+}
+.scenario-section:last-child {
+    border-bottom: none;
+}
+
+.scenario-section h2 {
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #111; /* Darker color for all H2 by default */
+}
+
+.scenario-section p {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    /* Inherits .scenario-section color: #444; */
+}
+
+.scenario-section ul {
+    padding-left: 0;
+    list-style-position: inside;
+    margin-bottom: 20px;
+    max-width: 700px;
+    /* Inherits .scenario-section color: #444; */
+}
+.scenario-section ul li {
+    margin-bottom: 12px;
+    font-size: 1.1em;
+    /* Inherits .scenario-section color: #444; */
+}
+
+/* For sections where text should be predominantly left-aligned */
+.scenario-section.text-dominant {
+    align-items: flex-start;
+    text-align: left;
+}
+.scenario-section.text-dominant ul {
+    padding-left: 20px; /* Add back padding for lists in left-aligned text */
+    list-style-position: outside;
+}
+
+
+/* Styling for sections WITH a background image */
+.scenario-section.has-bg-image {
+    background-size: cover;
+    background-position: center center;
+    color: #fff; /* Text directly on bg image (if not in overlay) would be white */
+}
+/* Text elements within a .has-bg-image section (even outside overlay) should be white */
+.scenario-section.has-bg-image h2,
+.scenario-section.has-bg-image p,
+.scenario-section.has-bg-image li {
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+/* Overlay for readability on background images */
+.scenario-section.has-bg-image .content-overlay {
+    background-color: rgba(0, 0, 0, 0.65); /* Slightly darker overlay */
+    padding: 30px 40px;
+    border-radius: 8px;
+    width: auto;
+    max-width: 800px;
+    margin: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: left; /* Text within overlay is left-aligned */
+}
+/* Ensure headings inside overlay are also white (redundant if parent .has-bg-image sets it, but safe) */
+.scenario-section.has-bg-image .content-overlay h2 {
+    color: #fff;
+    text-align: center; /* Center heading within overlay */
+}
+.scenario-section.has-bg-image .content-overlay p,
+.scenario-section.has-bg-image .content-overlay li {
+    color: #fff; /* Ensure text within overlay is white */
+}
+
+
+/* Image styling (remains the same) */
+.section-icon {
+    display: block;
+    max-width: 100px;
+    height: auto;
+    margin: 0 auto 25px auto;
+}
+.section-illustration {
+    display: block;
+    max-width: 80%;
+    width: 450px;
+    height: auto;
+    margin: 20px auto 30px auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.section-diagram {
+    display: block;
+    max-width: 90%;
+    width: 700px;
+    height: auto;
+    margin: 20px auto 30px auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.section-graphic {
+    display: block;
+    max-width: 60%;
+    width: 250px;
+    height: auto;
+    margin: 15px auto 25px auto;
+    border-radius: 4px;
+}
+
+/* Animation (remains the same) */
+.animated-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animated-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
